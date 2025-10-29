@@ -17,14 +17,17 @@ export default function RecencyPage() {
   const [showToast, setShowToast] = useState(false);
   const [currentView, setCurrentView] = useState('bio');
 
+  // need to check the correctness of this
+  // maybe it should instead be -recencyScore.. 
   const finalScore = likesScore + followScore + hashtagScore + followerLikeScore + recencyScore;
 
   const toggleView = () => {
     setCurrentView((prev) => (prev === 'bio' ? 'post' : 'bio'));
   };
 
+  // let's edit this to be correct
   useEffect(() => {
-    const calcScore = ((10 - weight) / 10) * minutesAgo;
+    const calcScore = -(weight / 10) * minutesAgo;
     setRecencyScore(calcScore);
     if (minutesAgo > 0) setShowToast(true);
   }, [weight, minutesAgo]);
@@ -87,7 +90,7 @@ export default function RecencyPage() {
         <div className="score-display">
           <h3>3. Calculated Score:</h3>
           <div className="score-breakdown">
-            <span>(1 - </span>
+            <span>( - </span>
             <span className="fraction">
               <span className="boxed">{weight}</span>
               <span className="line"></span>
