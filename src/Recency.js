@@ -77,11 +77,11 @@ export default function RecencyPage() {
         </div>
 
         <div className="input-block">
-          <h3>2. How many minutes ago was the post uploaded?</h3>
+          <h3>2. How many days ago was the post uploaded?</h3>
           <input
             type="number"
             min="0"
-            placeholder="Enter number of minutes"
+            placeholder="Enter number of days"
             value={minutesAgo}
             onChange={(e) => setMinutesAgo(Number(e.target.value))}
           />
