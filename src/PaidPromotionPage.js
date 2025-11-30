@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import './LikesPage.css';
 
 export default function PaidPromotionPage() {
   const location = useLocation();
-  const navigate = useNavigate();
 
   const likesScore = location.state?.likesScore || 0;
   const followScore = location.state?.followScore || 0;
@@ -25,9 +24,9 @@ export default function PaidPromotionPage() {
   };
 
   useEffect(() => {
-    const score = isPromoted === 'yes' ? 10 : 0;
-    setPaidScore(score);
-    if (isPromoted !== null) setShowToast(true);
+    if (isPromoted === null) return;
+    setPaidScore(isPromoted === 'yes' ? 10 : 0);
+    setShowToast(true);
   }, [isPromoted]);
 
   return (
@@ -37,24 +36,45 @@ export default function PaidPromotionPage() {
         <h2>Pic & Post</h2>
         {currentView === 'bio' ? (
           <div className="profile-card">
-            <img src="/profile_pic.png" alt="Mo" width={120} height={120} className="profile-img" />
+            <img
+              src={process.env.PUBLIC_URL + '/profile_pic.png'}
+              alt="Mo"
+              width={120}
+              height={120}
+              className="profile-img"
+            />
             <h3>Mo</h3>
             <p><strong>Followed users:</strong> @selena_swift</p>
             <p><strong>Followed hashtags:</strong> #music, #art</p>
-            <p><strong>Bio:</strong> Mo enjoys doing drawing and painting in his free time. He plays the flute in the school band and is a massive fan of Selena Swift!</p>
+            <p><strong>Bio:</strong> Mo enjoys drawing and painting in his free time. He plays the flute in the school band and is a massive fan of Selena Swift!</p>
           </div>
         ) : (
           <div className="post-preview">
-            <img src="/post.png" alt="Post visual" width={300} height={500} />
+            <img
+              src={process.env.PUBLIC_URL + '/post.png'}
+              alt="Post visual"
+              width={300}
+              height={500}
+            />
           </div>
         )}
         <div className="carousel-controls">
-          <img src="/back_arrow.png" alt="Back" onClick={toggleView} className="nav-arrow" />
+          <img
+            src={process.env.PUBLIC_URL + '/back_arrow.png'}
+            alt="Back"
+            onClick={toggleView}
+            className="nav-arrow"
+          />
           <div className="dots">
             <span className={currentView === 'bio' ? 'dot active' : 'dot'}></span>
             <span className={currentView === 'post' ? 'dot active' : 'dot'}></span>
           </div>
-          <img src="/forward_arrow.png" alt="Forward" onClick={toggleView} className="nav-arrow" />
+          <img
+            src={process.env.PUBLIC_URL + '/forward_arrow.png'}
+            alt="Forward"
+            onClick={toggleView}
+            className="nav-arrow"
+          />
         </div>
       </div>
 
@@ -122,15 +142,11 @@ export default function PaidPromotionPage() {
             You can now use this to rank content.
           </p>
           <button
-  className="next-button"
-  onClick={() => {
-    alert(`Final score is ${finalScore.toFixed(2)}`);
-    setShowToast(false); // Hide toast after finishing
-  }}
->
-  Finish
-</button>
-
+            className="next-button"
+            onClick={() => setShowToast(false)}
+          >
+            Finish
+          </button>
         </div>
       )}
     </div>

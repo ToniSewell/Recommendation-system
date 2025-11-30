@@ -26,7 +26,7 @@ export default function FollowedUserLikedPage() {
   useEffect(() => {
     const calcScore = (weight / 10) * numUsers;
     setFollowerLikeScore(calcScore);
-    if (numUsers > 0) setShowToast(true);
+    setShowToast(numUsers > 0);
   }, [weight, numUsers]);
 
   return (
@@ -36,31 +36,51 @@ export default function FollowedUserLikedPage() {
         <h2>Pic & Post</h2>
         {currentView === 'bio' ? (
           <div className="profile-card">
-            <img src="/profile_pic.png" alt="Mo" width={120} height={120} className="profile-img" />
+            <img
+              src={process.env.PUBLIC_URL + '/profile_pic.png'}
+              alt="Mo"
+              width={120}
+              height={120}
+              className="profile-img"
+            />
             <h3>Mo</h3>
             <p><strong>Followed users:</strong> @selena_swift</p>
             <p><strong>Followed hashtags:</strong> #music, #art</p>
-            <p><strong>Bio:</strong> Mo enjoys doing drawing and painting in his free time. He plays the flute in the school band and is a massive fan of Selena Swift!</p>
+            <p><strong>Bio:</strong> Mo enjoys drawing and painting in his free time. He plays the flute in the school band and is a massive fan of Selena Swift!</p>
           </div>
         ) : (
           <div className="post-preview">
-            <img src="/post.png" alt="Post visual" width={300} height={500} />
+            <img
+              src={process.env.PUBLIC_URL + '/post.png'}
+              alt="Post visual"
+              width={300}
+              height={500}
+            />
           </div>
         )}
         <div className="carousel-controls">
-          <img src="/back_arrow.png" alt="Back" onClick={toggleView} className="nav-arrow" />
+          <img
+            src={process.env.PUBLIC_URL + '/back_arrow.png'}
+            alt="Back"
+            onClick={toggleView}
+            className="nav-arrow"
+          />
           <div className="dots">
             <span className={currentView === 'bio' ? 'dot active' : 'dot'}></span>
             <span className={currentView === 'post' ? 'dot active' : 'dot'}></span>
           </div>
-          <img src="/forward_arrow.png" alt="Forward" onClick={toggleView} className="nav-arrow" />
+          <img
+            src={process.env.PUBLIC_URL + '/forward_arrow.png'}
+            alt="Forward"
+            onClick={toggleView}
+            className="nav-arrow"
+          />
         </div>
       </div>
 
       {/* Middle Column */}
       <div className="column card builder-section">
         <h2>Algorithm Builder</h2>
-
         <div className="input-block">
           <h3>1. Choose a weight (0–10):</h3>
           <input
@@ -74,7 +94,7 @@ export default function FollowedUserLikedPage() {
         </div>
 
         <div className="input-block">
-          <h3>2. Has anyone they follow liked the post</h3>
+          <h3>2. Number of followed users who liked the post</h3>
           <input
             type="number"
             min="0"
@@ -116,8 +136,6 @@ export default function FollowedUserLikedPage() {
         <p className="plus">+</p>
         <p>6. ... = <strong>{score5.toFixed(2)}</strong></p>
         <h3>Final Score: <span className="final-score">{finalScore.toFixed(2)}</span></h3>
-
-        
       </div>
 
       {/* Toast */}
