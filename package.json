@@ -1,5 +1,6 @@
 {
   "name": "recommendation_system",
+  "homepage": "https://tonisewell.github.io/Recommendation_system",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
