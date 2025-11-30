@@ -39,7 +39,7 @@ export default function RecencyPage() {
         <h2>Pic & Post</h2>
         {currentView === 'bio' ? (
           <div className="profile-card">
-            <img src="/profile_pic.png" alt="Mo" width={120} height={120} className="profile-img" />
+            <img src={process.env.PUBLIC_URL + '/profile_pic.png'} alt="Mo" width={120} height={120} className="profile-img" />
             <h3>Mo</h3>
             <p><strong>Followed users:</strong> @selena_swift</p>
             <p><strong>Followed hashtags:</strong> #music, #art</p>
@@ -56,7 +56,7 @@ export default function RecencyPage() {
             <span className={currentView === 'bio' ? 'dot active' : 'dot'}></span>
             <span className={currentView === 'post' ? 'dot active' : 'dot'}></span>
           </div>
-          <img src="/forward_arrow.png" alt="Forward" onClick={toggleView} className="nav-arrow" />
+          <img src={process.env.PUBLIC_URL + '/forward_arrow.png'} alt="Forward" onClick={toggleView} className="nav-arrow" />
         </div>
       </div>
 
