@@ -11,26 +11,30 @@ export default function LikesPage() {
   const [showToast, setShowToast] = useState(false);
 
   const navigate = useNavigate();
-
   const finalScore = likesScore + score2 + score3 + score4;
 
   const [currentView, setCurrentView] = useState('bio'); // 'bio' or 'post'
 
-  const toggleView = (direction) => {
+  const toggleView = () => {
     setCurrentView((prev) => (prev === 'bio' ? 'post' : 'bio'));
   };
-
 
   return (
     <div className="likes-page">
 
-        
-    <div className="column card profile-section">
+      {/* Left Column */}
+      <div className="column card profile-section">
         <h2>Pic & Post</h2>
 
         {currentView === 'bio' ? (
           <div className="profile-card">
-            <img src="/profile_pic.png" alt="Mo" width={120} height={120} className="profile-img" />
+            <img
+              src={process.env.PUBLIC_URL + '/profile_pic.png'}
+              alt="Mo"
+              width={120}
+              height={120}
+              className="profile-img"
+            />
             <h3>Mo</h3>
             <p><strong>Followed users:</strong> @selena_swift</p>
             <p><strong>Followed hashtags:</strong> #music, #art</p>
@@ -38,27 +42,35 @@ export default function LikesPage() {
           </div>
         ) : (
           <div className="post-preview">
-            <img src="/post.png" alt="Post visual" width={300} height={500} />
+            <img
+              src={process.env.PUBLIC_URL + '/post.png'}
+              alt="Post visual"
+              width={300}
+              height={500}
+            />
           </div>
         )}
 
         {/* Arrows + Dots */}
         <div className="carousel-controls">
-          <img src="/back_arrow.png" alt="Back" onClick={toggleView} className="nav-arrow" />
+          <img
+            src={process.env.PUBLIC_URL + '/back_arrow.png'}
+            alt="Back"
+            onClick={toggleView}
+            className="nav-arrow"
+          />
           <div className="dots">
             <span className={currentView === 'bio' ? 'dot active' : 'dot'}></span>
             <span className={currentView === 'post' ? 'dot active' : 'dot'}></span>
           </div>
-          <img src="/forward_arrow.png" alt="Forward" onClick={toggleView} className="nav-arrow" />
+          <img
+            src={process.env.PUBLIC_URL + '/forward_arrow.png'}
+            alt="Forward"
+            onClick={toggleView}
+            className="nav-arrow"
+          />
         </div>
       </div>
-       
-
-      {/* <div className="middle-column">
-        <LikesCalculator onScoreChange={setFinalScore} />
-      </div> */}
-
-    
 
       {/* Builder Section */}
       <div className="column card builder-section">
@@ -85,7 +97,6 @@ export default function LikesPage() {
         <p>5. ... = <strong>{score4.toFixed(2)}</strong></p>
         <p className="plus">+</p>
         <p>6. ... = <strong>{score4.toFixed(2)}</strong></p>
-        {/* <hr /> */}
         <h3>Final Score: <span className="final-score">{finalScore.toFixed(2)}</span></h3>
       </div>
 
@@ -96,7 +107,12 @@ export default function LikesPage() {
             You’ve calculated the likes score.<br />
             Move on to the next question when you're ready.
           </p>
-          <button className="next-button" onClick={() => navigate('/follow-poster', { state: { likesScore: likesScore } })}>
+          <button
+            className="next-button"
+            onClick={() =>
+              navigate('/follow-poster', { state: { likesScore } })
+            }
+          >
             Next →
           </button>
         </div>
