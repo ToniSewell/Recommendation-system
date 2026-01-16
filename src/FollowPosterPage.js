@@ -2,6 +2,11 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './LikesPage.css'; // Reuse styles from LikesPage
+import postImg from './assets/post.png'; // added import
+import profilePic from './assets/profile_pic.png';
+import backArrow from './assets/back_arrow.png';
+import forwardArrow from './assets/forward_arrow.png';
+
 
 export default function FollowPosterPage() {
   const location = useLocation();
@@ -39,7 +44,7 @@ export default function FollowPosterPage() {
         <h2>Pic & Post</h2>
         {currentView === 'bio' ? (
           <div className="profile-card">
-            <img src="/profile_pic.png" alt="Mo" width={120} height={120} className="profile-img" />
+            <img src={profilePic} alt="Mo" width={120} height={120} className="profile-img" />
             <h3>Mo</h3>
             <p><strong>Followed users:</strong> @selena_swift</p>
             <p><strong>Followed hashtags:</strong> #music, #art</p>
@@ -47,16 +52,16 @@ export default function FollowPosterPage() {
           </div>
         ) : (
           <div className="post-preview">
-            <img src="/post.png" alt="Post visual" width={300} height={500} />
+            <img src={postImg} alt="Post visual" width={300} height={500} />
           </div>
         )}
         <div className="carousel-controls">
-          <img src="/back_arrow.png" alt="Back" onClick={toggleView} className="nav-arrow" />
+          <img src={backArrow} alt="Back" onClick={toggleView} className="nav-arrow" />
           <div className="dots">
             <span className={currentView === 'bio' ? 'dot active' : 'dot'}></span>
             <span className={currentView === 'post' ? 'dot active' : 'dot'}></span>
           </div>
-          <img src="/forward_arrow.png" alt="Forward" onClick={toggleView} className="nav-arrow" />
+          <img src={forwardArrow} alt="Forward" onClick={toggleView} className="nav-arrow" />
         </div>
       </div>
 
