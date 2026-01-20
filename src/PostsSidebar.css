@@ -1,0 +1,41 @@
+.posts-sidebar {
+  width: 260px;
+  min-width: 200px;
+  max-width: 33%;
+  height: calc(100vh - 32px);
+  padding: 12px;
+  box-sizing: border-box;
+  border-right: 1px solid #e6e6e6;
+  background: #fafafa;
+  position: sticky;
+  top: 0;
+  overflow-y: auto;
+  z-index: 2;
+}
+
+.posts-header {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.posts-empty {
+  color: #777;
+  font-size: 0.95rem;
+  padding: 8px 0;
+}
+
+.posts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.post-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+  object-fit: cover;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
