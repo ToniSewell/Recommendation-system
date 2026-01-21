@@ -35,9 +35,9 @@ export default function FollowPosterPage() {
   }, [weight, followsPoster]);
 
   return (
-    <div className="follow-poster-page" style={{ display: 'flex', gap: '20px', alignItems: 'flex-start' }}>
+    <div className="likes-page" style={{ display: 'flex', gap: '20px', alignItems: 'flex-start' }}>
       <PostsSidebar />
-      <div className="likes-page">
+      <div style={{ flex: 1, display: 'flex', gap: '20px', alignItems: 'flex-start' }}>
         {/* Left Column (user same as LikesPage) */}
         <ColumnCard title="User" className="profile-section">
           <ProfileCard

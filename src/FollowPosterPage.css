@@ -1,66 +1,13 @@
+/* reuse shared rules */
+@import './styles/shared.css';
+
 .follow-poster-page {
     display: flex;
-    justify-content: center;
+    gap: 2rem;
     padding: 2rem;
     background: #fef6ec;
-    height: calc(100vh - 130px);
     font-family: 'Segoe UI', sans-serif;
-  }
-  
-  .card {
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    padding: 2rem;
-    max-width: 500px;
-    width: 100%;
-  }
-  
-  .input-block {
-    margin-bottom: 2rem;
-  }
-  
-  .radio-group {
-    display: flex;
-    gap: 1.5rem;
-    margin-top: 0.5rem;
-  }
-  
-  .score-display {
-    margin-top: 2rem;
-  }
-  
-  .score-breakdown {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 1.2rem;
-    color: #0a2a63;
-  }
-  
-  .fraction {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    font-weight: bold;
-  }
-  
-  .fraction .line {
-    width: 100%;
-    height: 2px;
-    background-color: #000;
-  }
-  
-  .boxed {
-    border: 2px solid #0a2a63;
-    padding: 0.2rem 0.6rem;
-    border-radius: 4px;
-    min-width: 1.5rem;
-    text-align: center;
-    display: inline-block;
-  }
-  
-  .math-symbol {
-    font-weight: bold;
+    justify-content: space-around;
+    height: calc(100vh - 130px); /* Adjust for navbar height */
   }
   
