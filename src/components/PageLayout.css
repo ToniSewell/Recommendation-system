@@ -1,0 +1,16 @@
+.page-layout {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  height: calc(100vh - 130px); /* keep the same height as LikesPage */
+  padding: 2rem;
+  box-sizing: border-box;
+  background: var(--page-bg, #fef6ec);
+}
+
+.page-main {
+  flex: 1;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}

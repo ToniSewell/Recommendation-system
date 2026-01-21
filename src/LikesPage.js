@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LikesCalculator } from './LikesCalculator';
 import './LikesPage.css';
-import PostsSidebar from './PostsSidebar';
+import PageLayout from './components/PageLayout';
+import UserSection from './components/UserSection';
 import ColumnCard from './components/ColumnCard';
 import ProfileCard from './components/ProfileCard';
 
@@ -23,20 +24,13 @@ export default function LikesPage() {
   };
 
   return (
-    <div className="likes-page" style={{ display: 'flex', gap: '20px', alignItems: 'flex-start' }}>
-      <PostsSidebar />
-
-      <ColumnCard title="User" className="profile-section">
-        <ProfileCard
-          name="Mo"
-          imgSrc={process.env.PUBLIC_URL + '/profile_pic.png'}
-          meta={[
-            '<strong>Followed users:</strong> @selena_swift',
-            '<strong>Followed hashtags:</strong> #music, #art'
-          ]}
-          bio="Mo enjoys doing drawing and painting in his free time. He plays the flute in the school band and is a massive fan of Selena Swift!"
-        />
-      </ColumnCard>
+    <PageLayout className="likes-page">
+      <UserSection
+        title="User"
+        name="Mo"
+        imgSrc={process.env.PUBLIC_URL + '/profile_pic.png'}
+        bio="Mo enjoys doing drawing and painting in his free time. He plays the flute in the school band and is a massive fan of Selena Swift!"
+      />
 
       <ColumnCard title="Algorithm Builder: Likes" className="builder-section">
         <LikesCalculator
@@ -79,6 +73,6 @@ export default function LikesPage() {
           </button>
         </div>
       )}
-    </div>
+    </PageLayout>
   );
 }
