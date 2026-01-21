@@ -1,27 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import './LikesPage.css';
+import PageLayout from './components/PageLayout';
+import UserSection from './components/UserSection';
 
 export default function PaidPromotionPage() {
   const location = useLocation();
 
   const likesScore = location.state?.likesScore || 0;
   const followScore = location.state?.followScore || 0;
-  const hashtagScore = location.state?.hashtagScore || 0;
+  const hashtagScore = location.state?.hashtag_score || 0;
   const followerLikeScore = location.state?.followerLikeScore || 0;
   const recencyScore = location.state?.recencyScore || 0;
 
   const [paidScore, setPaidScore] = useState(0);
   const [isPromoted, setIsPromoted] = useState(null);
   const [showToast, setShowToast] = useState(false);
-  const [currentView, setCurrentView] = useState('bio');
 
   const finalScore =
     likesScore + followScore + hashtagScore + followerLikeScore + recencyScore + paidScore;
-
-  const toggleView = () => {
-    setCurrentView((prev) => (prev === 'bio' ? 'post' : 'bio'));
-  };
 
   useEffect(() => {
     if (isPromoted === null) return;
@@ -30,53 +27,13 @@ export default function PaidPromotionPage() {
   }, [isPromoted]);
 
   return (
-    <div className="likes-page">
-      {/* Left Column */}
-      <div className="column card profile-section">
-        <h2>Pic & Post</h2>
-        {currentView === 'bio' ? (
-          <div className="profile-card">
-            <img
-              src={process.env.PUBLIC_URL + '/profile_pic.png'}
-              alt="Mo"
-              width={120}
-              height={120}
-              className="profile-img"
-            />
-            <h3>Mo</h3>
-            <p><strong>Followed users:</strong> @selena_swift</p>
-            <p><strong>Followed hashtags:</strong> #music, #art</p>
-            <p><strong>Bio:</strong> Mo enjoys drawing and painting in his free time. He plays the flute in the school band and is a massive fan of Selena Swift!</p>
-          </div>
-        ) : (
-          <div className="post-preview">
-            <img
-              src={process.env.PUBLIC_URL + '/post.png'}
-              alt="Post visual"
-              width={300}
-              height={500}
-            />
-          </div>
-        )}
-        <div className="carousel-controls">
-          <img
-            src={process.env.PUBLIC_URL + '/back_arrow.png'}
-            alt="Back"
-            onClick={toggleView}
-            className="nav-arrow"
-          />
-          <div className="dots">
-            <span className={currentView === 'bio' ? 'dot active' : 'dot'}></span>
-            <span className={currentView === 'post' ? 'dot active' : 'dot'}></span>
-          </div>
-          <img
-            src={process.env.PUBLIC_URL + '/forward_arrow.png'}
-            alt="Forward"
-            onClick={toggleView}
-            className="nav-arrow"
-          />
-        </div>
-      </div>
+    <PageLayout className="likes-page">
+      <UserSection
+        title="User"
+        name="Mo"
+        imgSrc={process.env.PUBLIC_URL + '/profile_pic.png'}
+        bio="Mo enjoys drawing and painting in his free time. He plays the flute in the school band and is a massive fan of Selena Swift!"
+      />
 
       {/* Middle Column */}
       <div className="column card builder-section">
@@ -149,6 +106,6 @@ export default function PaidPromotionPage() {
           </button>
         </div>
       )}
-    </div>
+    </PageLayout>
   );
 }

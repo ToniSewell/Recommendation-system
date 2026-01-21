@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './LikesPage.css'; // reuse shared styles
+import PageLayout from './components/PageLayout';
+import UserSection from './components/UserSection';
 
 export default function RecencyPage() {
   const location = useLocation();
@@ -33,32 +35,13 @@ export default function RecencyPage() {
   }, [weight, minutesAgo]);
 
   return (
-    <div className="likes-page">
-      {/* Left Column */}
-      <div className="column card profile-section">
-        <h2>Pic & Post</h2>
-        {currentView === 'bio' ? (
-          <div className="profile-card">
-            <img src={process.env.PUBLIC_URL + '/profile_pic.png'} alt="Mo" width={120} height={120} className="profile-img" />
-            <h3>Mo</h3>
-            <p><strong>Followed users:</strong> @selena_swift</p>
-            <p><strong>Followed hashtags:</strong> #music, #art</p>
-            <p><strong>Bio:</strong> Mo enjoys doing drawing and painting in his free time. He plays the flute in the school band and is a massive fan of Selena Swift!</p>
-          </div>
-        ) : (
-          <div className="post-preview">
-            <img src="/post.png" alt="Post visual" width={300} height={500} />
-          </div>
-        )}
-        <div className="carousel-controls">
-          <img src="/back_arrow.png" alt="Back" onClick={toggleView} className="nav-arrow" />
-          <div className="dots">
-            <span className={currentView === 'bio' ? 'dot active' : 'dot'}></span>
-            <span className={currentView === 'post' ? 'dot active' : 'dot'}></span>
-          </div>
-          <img src={process.env.PUBLIC_URL + '/forward_arrow.png'} alt="Forward" onClick={toggleView} className="nav-arrow" />
-        </div>
-      </div>
+    <PageLayout className="likes-page">
+      <UserSection
+        title="User"
+        name="Mo"
+        imgSrc={process.env.PUBLIC_URL + '/profile_pic.png'}
+        bio="Mo enjoys doing drawing and painting in his free time. He plays the flute in the school band and is a massive fan of Selena Swift!"
+      />
 
       {/* Middle Column */}
       <div className="column card builder-section">
@@ -145,6 +128,6 @@ export default function RecencyPage() {
           </button>
         </div>
       )}
-    </div>
+    </PageLayout>
   );
 }
